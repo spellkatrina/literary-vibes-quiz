@@ -320,7 +320,7 @@
                             content = `<div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
                                 ${era.authors.map(author => `
                                     <div>
-                                        <img src="${author.portrait}" alt="[Портрет ${author.name}]" class="w-full h-40 object-cover rounded-lg mb-2 shadow-md" onerror="this.onerror=null;this.src='https://placehold.co/150x200/e2e8f0/334155?text=?';">
+                                        <img src="${author.portrait}" alt="[Портрет ${author.name}]" class="w-full h-60 object-cover rounded-lg mb-2 shadow-md" onerror="this.onerror=null;this.src='https://placehold.co/150x200/e2e8f0/334155?text=?';">
                                         <p class="font-semibold text-sm text-stone-700">${author.name}</p>
                                     </div>
                                 `).join('')}
@@ -477,3 +477,4 @@
     </script>
 </body>
 </html>
+
