@@ -434,23 +434,18 @@
             }
 
             function trackTestCompletion() {
-                // Эта функция отправляет POST-запрос на ваш сервер.
-                // Вам нужно создать на сервере скрипт (например, /api/track-quiz.php),
-                // который будет принимать этот запрос и увеличивать счетчик.
-                // Это самый простой способ, который не требует подключения внешних сервисов аналитики.
-                
-                // Пример простого PHP-скрипта (track-quiz.php):
-                /*
-                <?php
-                $file = 'quiz_counter.txt';
-                $count = file_exists($file) ? (int)file_get_contents($file) : 0;
-                $count++;
-                file_put_contents($file, $count);
-                // Отвечаем, чтобы запрос завершился успешно
-                header('Content-Type: application/json');
-                echo json_encode(['status' => 'success', 'count' => $count]);
-                ?>
-                */
+                // Отправляем событие в GoatCounter, когда тест завершен
+                if (window.goatcounter && window.goatcounter.count) {
+                    window.goatcounter.count({
+                        path:  'quiz-completion',
+                        title: 'Quiz Completed',
+                        event: true,
+                    });
+                    console.log('Quiz completion tracked with GoatCounter');
+                } else {
+                    console.log('GoatCounter not found, tracking skipped');
+                }
+            }
 
                 fetch('/api/track-quiz', {
                     method: 'POST',
@@ -473,5 +468,8 @@
             showQuestion();
         });
     </script>
+    <script data-goatcounter="https://spellkatrina.goatcounter.com/count"async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>
+
+S
